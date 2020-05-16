@@ -11,6 +11,7 @@ public class VendingMachine {
     private Soda pepsi = new Soda("Pepsi", 10);
     private Soda coke = new Soda("Coke", 20);
     private Soda drPepper = new Soda("Dr Pepper", 15);
+    private Soda notFound = new Soda("No Soda Found", 0);
 
     private List<Soda> sodas = Arrays.asList(pepsi, coke, drPepper);
 
@@ -18,11 +19,11 @@ public class VendingMachine {
         if (name != null) {
             Soda soda = sodas.
                     stream()
-                    .filter((s) -> s.getName().toLowerCase().equals(name))
+                    .filter((s) -> s.getName().toLowerCase().equals(name.toLowerCase()))
                     .findFirst()
-                    .orElse(null);
+                    .orElse(notFound);
             return soda;
         }
-        return null;
+        return notFound;
     }
 }
